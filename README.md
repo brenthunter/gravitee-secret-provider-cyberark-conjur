@@ -8,7 +8,7 @@
 
 | Gravitee Version | Secret Provider CyberArk-Conjur | Product |
 |------------------|---------------------------------|---------|
-| 4.8.x            | 1.0.x                           | All     |
+| 4.8.x            | 0.0.1                           | All     |
 
 
 ## Overview
@@ -39,6 +39,9 @@ secrets:
         # Other optional settings
         # sslVerify: true
         # sslCertificateFile: ....crt
+    watch:
+      enabled: true
+      pollIntervalSec: 60
 ```
 
 ### API-level Secrets
@@ -59,6 +62,9 @@ api:
               # Other optional settings
               # sslVerify: true
               # sslCertificateFile: ....crt
+          watch:
+           enabled: true
+           pollIntervalSec: 60
 ```
 
 And then to retrieve a secret from CyberArk Conjur, use the following syntax in an EL-supported field:
@@ -87,6 +93,8 @@ services:
       - gravitee_api_secrets_providers_0_configuration_auth_config_apikey=...
       # - gravitee_api_secrets_providers_0_configuration_auth_config_sslVerify=true #default=true (Should never be disabled used in production)
       # - gravitee_api_secrets_providers_0_configuration_auth_config_sslCertificateFile=your_cert.crt #.crt file (trusted)
+      - gravitee_api_secrets_providers_0_configuration_watch_enabled=true
+      - gravitee_api_secrets_providers_0_configuration_watch_pollIntervalSec=30
 ```
       
 ## Known Limitations
